@@ -1,0 +1,5 @@
+<div class="controls">
+  <select tal:attributes="id id @@attributes" value="{{ form.value }}">
+    <option tal:attributes="name item/value" tal:content="item/label" tal:repeat="item items"></option>
+  </select>
+</div>

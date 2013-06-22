@@ -18,6 +18,7 @@ class Parser
     protected $blocks = array();
     protected $defaultBlock = '';
     protected $currentBlock = array();
+    protected $currentBlockName = '';
     protected $strictVariables = true;
 
     protected $data = array();
@@ -123,12 +124,8 @@ class Parser
             try {
                 $generated[$varName] = $fn($data);
             } catch (\Exception $e) {
-                //print_r($data);
                 throw new \Exception('Haanga Error: ' . $e->getMessage());
             }
-            //$content = $this->buildIterators($template);
-            //$content = $this->replaceData($content, $data);
-            //$generated[$varName] = $content;
         }
 
         return $generated;
@@ -160,11 +157,15 @@ class Parser
         $stringComposing = false;
         $skipMultilineComment = false;
 
+        // variables to store key and value at @var statement
+        $name  = '';
+        $value = '';
+
         while (($line = fgets($fp)) !== false) {
             $lineCount++;
 
             if ($stringComposing) {
-                if (substr($line, 0, 3) === '>>>') {
+                if (substr(trim($line), 0, 3) === '>>>') {
                     $this->blocks[$block][$name] = rtrim($value);
                     //$block = '';
                     $value = '';
@@ -363,7 +364,7 @@ class Parser
         return $val;
     }
 
-    protected function buildIterators($template)
+    /*DEPRECATED protected function buildIterators($template)
     {
         $pattern = '/@@(?<iterator>\w+)\(\{(?<var>\w+)\}\)/';
         $result  = preg_replace_callback(
@@ -373,9 +374,9 @@ class Parser
         );
 
         return $result;
-    }
+    }*/
 
-    protected function parseTemplate($matches)
+    /*DEPRECATED protected function parseTemplate($matches)
     {
         $iterators  = $this->getIterators();
 
@@ -441,9 +442,9 @@ class Parser
         }
 
         return implode($iterator['sep'], $composed);
-    }
+    }*/
 
-    protected function replaceData($template, $data)
+    /*DEPRECATED protected function replaceData($template, $data)
     {
         if (!preg_match_all('/\{(?<varname>\w+)\}/', $template, $matches)) {
             return $template;
@@ -469,6 +470,6 @@ class Parser
         }
 
         return $template;
-    }
+    }*/
 }
 

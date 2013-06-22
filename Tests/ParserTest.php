@@ -1,9 +1,11 @@
 <?php
 use Alchemy\Component\UI\Parser;
 
-/*include_once 'bootstrap.php';
-$parser = new Parser(__DIR__ . '/Fixtures/schema/mini-html.genscript');
-print_r($parser->getBlocks()); die;*/
+/*
+include_once 'bootstrap.php';
+$parser = new Parser(__DIR__ . '/../bundle/twitter-bootstrap/components-twig.mt');
+print_r($parser->getBlocks()); die;
+*/
 
 
 

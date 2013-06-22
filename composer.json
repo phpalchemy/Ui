@@ -1,7 +1,8 @@
 {
     "minimum-stability": "dev",
     "require": {
-        "crodas/Haanga"   : "dev-master"
+        "crodas/Haanga"   : "dev-master",
+        "phptal/phptal" : "dev-master"
     }
 }
 
